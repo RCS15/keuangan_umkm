@@ -29,7 +29,20 @@ class PemasukanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'produk'            => 'required|string|max:255',
+            'tanggal'           => 'required|date',
+            'jumlah'            => 'required|integer|min:1',
+            'harga_per_bungkus' => 'required|numeric|min:0',
+            'total'             => 'required|numeric|min:0',
+            'keterangan'        => 'nullable|string',
+        ]);
+        
+        $pemasukan = Pemasukan::create($validate);
+        if ($pemasukan) {
+            return redirect()->route('history.pemasukan')->with('success', 'Data berhasil ditambahkan');
+        }
+        return redirect()->back()->with('error', 'Data gagal ditambahkan');
     }
 
     /**
