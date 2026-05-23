@@ -20,18 +20,18 @@
                 class="absolute top-0 right-0 w-32 h-32 bg-rose-500 opacity-5 rounded-bl-full -mr-10 -mt-10 pointer-events-none">
             </div>
 
-            <form class="space-y-6 relative z-10">
-
+            <form class="space-y-6 relative z-10" method="POST" action="{{ route('pengeluaran.store') }}">
+                @csrf
+                @method('POST')
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-2">
-                        <label class="block text-sm font-semibold text-slate-700">Nama Keperluan / Bahan <span
-                                class="text-rose-500">*</span></label>
+                        <label class="block text-sm font-semibold text-slate-700">Nama Keperluan / Bahan <span class="text-rose-500">*</span></label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                 <i class="fa-solid fa-cart-shopping text-slate-400"></i>
                             </div>
                             <input type="text" placeholder="Misal: Beli minyak goreng 5L"
-                                class="w-full pl-10 border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all">
+                                class="w-full pl-10 border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all" name="bahan">
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                         <label class="block text-sm font-semibold text-slate-700">Tanggal Pengeluaran <span
                                 class="text-rose-500">*</span></label>
                         <input type="date"
-                            class="w-full border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all">
+                            class="w-full border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all" name="tanggal">
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                                 <i class="fa-solid fa-box text-slate-400"></i>
                             </div>
                             <input type="number" id="jumlah" min="0" placeholder="0"
-                                class="w-full pl-10 border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all">
+                                class="w-full pl-10 border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all" name="jumlah">
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
                                 <span class="text-slate-400 font-medium">Rp</span>
                             </div>
                             <input type="number" id="harga" min="0" placeholder="0"
-                                class="w-full pl-12 border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all">
+                                class="w-full pl-12 border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all" name="harga_satuan">
                         </div>
                     </div>
                 </div>
@@ -76,14 +76,14 @@
                             <span class="text-rose-600 font-bold">Rp</span>
                         </div>
                         <input type="text" id="total" readonly placeholder="0"
-                            class="w-full pl-12 border border-rose-200 text-rose-700 font-bold text-lg rounded-xl px-4 py-3 bg-rose-50 focus:outline-none transition-all cursor-not-allowed">
+                            class="w-full pl-12 border border-rose-200 text-rose-700 font-bold text-lg rounded-xl px-4 py-3 bg-rose-50 focus:outline-none transition-all cursor-not-allowed" name="harga_total">
                     </div>
                 </div>
 
                 <div class="space-y-2">
                     <label class="block text-sm font-semibold text-slate-700">Catatan Tambahan</label>
                     <textarea rows="3" placeholder="Informasi tambahan terkait pengeluaran..."
-                        class="w-full border border-slate-200 text-slate-700 rounded-xl px-4 py-3 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all resize-none"></textarea>
+                        class="w-full border border-slate-200 text-slate-700 rounded-xl px-4 py-3 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all resize-none" name="keterangan"></textarea>
                 </div>
 
                 <div class="pt-4 border-t border-slate-100 flex justify-end gap-3">

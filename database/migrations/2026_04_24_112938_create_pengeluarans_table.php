@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('bahan'); // misal: Singkong
             $table->integer('jumlah'); // jumlah karung/kg
+            $table->decimal('harga_satuan', 12, 2);
             $table->decimal('harga_total', 12, 2);
             $table->date('tanggal');
             $table->text('keterangan')->nullable();

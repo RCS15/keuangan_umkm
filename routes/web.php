@@ -21,11 +21,12 @@ Route::get('/history/pemasukan', [PemasukanController::class, 'index'])->name('h
 Route::get('/history/pengeluaran', [PengeluaranController::class, 'index'])->name('history.pengeluaran');
 
 // route halaman form pemasukan
-Route::get('/pemasukan',[PemasukanController::class,'create']);
-Route::post('/pemasukan/store',[PemasukanController::class,'store']);
+Route::get('/pemasukan',[PemasukanController::class,'create'])->name('pemasukan');
+Route::post('/pemasukan/store',[PemasukanController::class,'store'])->name('pemasukan.store');
 
 // route halaman form pengeluaran
-Route::get('/pengeluaran',[PengeluaranController::class,'create']);
+Route::get('/pengeluaran',[PengeluaranController::class,'create'])->name('pengeluaran');
+Route::post('/pengeluaran/store',[PengeluaranController::class,'store'])->name('pengeluaran.store');
 
 // route halaman laporan
 Route::get('/laporan',[LaporanController::class,'index']);

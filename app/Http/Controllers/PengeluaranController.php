@@ -29,7 +29,20 @@ class PengeluaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'bahan'            => 'required|string|max:255',
+            'tanggal'           => 'required|date',
+            'jumlah'            => 'required|integer|min:1',
+            'harga_satuan'      => 'required|numeric|min:0',
+            'harga_total'       => 'required|numeric|min:0',
+            'keterangan'        => 'nullable|string',
+        ]);
+        
+        $pengeluaran = Pengeluaran::create($validate);
+        if ($pengeluaran) {
+            return redirect()->route('history.pengeluaran')->with('success', 'Data berhasil ditambahkan');
+        }
+        return redirect()->back()->with('error', 'Data gagal ditambahkan');
     }
 
     /**
