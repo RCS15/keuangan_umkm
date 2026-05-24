@@ -5,6 +5,7 @@ use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,3 +31,11 @@ Route::post('/pengeluaran/store',[PengeluaranController::class,'store'])->name('
 
 // route halaman laporan
 Route::get('/laporan',[LaporanController::class,'index']);
+
+// route halaman produk
+Route::get('/produk',[ProdukController::class, 'index'])->name('produk.index');
+Route::get('/produk/create',[ProdukController::class, 'create'])->name('produk.create');
+Route::post('/produk/store',[ProdukController::class, 'store'])->name('produk.store');
+Route::get('/produk/{id}/edit', [ProdukController::class, 'edit'])->name('produk.edit');
+Route::post('/produk/{id}/update', [ProdukController::class, 'update'])->name('produk.update');
+Route::delete('/produk/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy');
