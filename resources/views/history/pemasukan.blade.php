@@ -41,14 +41,20 @@
             <tbody class="divide-y divide-slate-100">
                 @forelse ($pemasukan as $item)
                 <tr class="hover:bg-slate-50 transition-colors duration-150 group">
-                    <td class="px-6 py-4 text-slate-500">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
-                    <td class="px-6 py-4 font-medium text-slate-800">{{ $item->produk }}</td>
+                    <td class="px-6 py-4 text-slate-500">
+                        {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
+                    </td>
+                    <td class="px-6 py-4 font-medium text-slate-800">
+                        {{ $item->produk->nama_produk }}
+                    </td>
                     <td class="px-6 py-4 text-center">
                         <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-700">
                             {{ $item->jumlah }}
                         </span>
                     </td>
-                    <td class="px-6 py-4 text-right text-slate-500">Rp {{ number_format($item->harga_per_bungkus, 0, ',', '.') }}</td>
+                    <td class="px-6 py-4 text-right text-slate-500">
+                        Rp {{ number_format($item->harga_per_bungkus, 0, ',', '.') }}
+                    </td>
                     <td class="px-6 py-4 text-right font-semibold text-emerald-600">
                         + Rp {{ number_format($item->total, 0, ',', '.') }}
                     </td>

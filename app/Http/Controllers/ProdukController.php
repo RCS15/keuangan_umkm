@@ -25,7 +25,8 @@ class ProdukController extends Controller
     {
         $validate = $request->validate([
             'nama_produk' => 'required',
-            'harga_jual' => 'required'
+            'harga_jual' => 'required',
+            'satuan' => 'required'
         ]);
 
         $produk = Produk::create($validate);
@@ -39,7 +40,7 @@ class ProdukController extends Controller
     public function edit(string $id)
     {
         $produk = Produk::findOrFail($id);
-        return view('produk.edit', compact('produk'));
+        return view('produk.create', compact('produk'));
     }
 
     public function update(Request $request, string $id)

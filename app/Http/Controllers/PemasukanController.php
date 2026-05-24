@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pemasukan;
+use App\Models\Produk;
 
 class PemasukanController extends Controller
 {
@@ -21,7 +22,8 @@ class PemasukanController extends Controller
      */
     public function create()
     {
-        return view('pemasukan.create');
+        $produk = Produk::orderBy('nama_produk', 'asc')->get();
+        return view('pemasukan.create', compact('produk'));
     }
 
     /**
@@ -30,7 +32,7 @@ class PemasukanController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'produk'            => 'required|string|max:255',
+            'produk_id' => 'required|exists:produks,id',
             'tanggal'           => 'required|date',
             'jumlah'            => 'required|integer|min:1',
             'harga_per_bungkus' => 'required|numeric|min:0',

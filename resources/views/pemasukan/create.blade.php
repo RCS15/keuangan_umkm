@@ -28,11 +28,14 @@
                         <label class="block text-sm font-semibold text-slate-700">Produk <span
                                 class="text-rose-500">*</span></label>
                         <div class="relative">
-                            <select
+                            <select id="pilih_produk"
                                 class="w-full appearance-none border border-slate-200 text-slate-700 rounded-xl px-4 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all cursor-pointer" name="produk">
                                 <option value="" disabled selected>Pilih produk...</option>
-                                <option>Keripik Singkong</option>
-                                <option>Keripik Pisang</option>
+                                @foreach ($produk as $item)
+                                    <option value="{{ $item->nama_produk }}" data-harga="{{ $item->harga_jual }}">
+                                        {{ $item->nama_produk }}
+                                    </option>
+                                @endforeach
                             </select>
                             <div
                                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
@@ -107,4 +110,37 @@
 
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectProduk = document.getElementById('pilih_produk');
+            const inputHarga = document.getElementById('harga');
+            const inputJumlah = document.getElementById('jumlah');
+            const inputTotal = document.getElementById('total');
+
+            // Auto-fill harga satuan saat produk dipilih
+            selectProduk.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                const harga = selectedOption.getAttribute('data-harga');
+                
+                if(harga) {
+                    // Masukkan ke input harga (hapus desimal jika ada)
+                    inputHarga.value = parseFloat(harga);
+                }
+                
+                // Otomatis hitung total setelah harga terisi
+                kalkulasiTotal();
+            });
+
+            // Kalkulasi total otomatis saat jumlah atau harga diketik/diubah manual
+            inputJumlah.addEventListener('input', kalkulasiTotal);
+            inputHarga.addEventListener('input', kalkulasiTotal);
+
+            function kalkulasiTotal() {
+                const jumlah = parseFloat(inputJumlah.value) || 0;
+                const harga = parseFloat(inputHarga.value) || 0;
+                inputTotal.value = (jumlah * harga);
+            }
+        });
+    </script>
 @endsection
