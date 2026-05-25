@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Pemasukan;
 use App\Models\Pengeluaran;
-
 class DashboardController extends Controller
 {
     public function index()
@@ -23,7 +22,7 @@ class DashboardController extends Controller
             return (object) [
                 'tanggal' => $item->tanggal,
                 'jenis' => 'Pemasukan',
-                'deskripsi' => $item->produk . ' (' . $item->jumlah . ' bungkus)',
+                'deskripsi' => $item->produk->nama_produk . ' (' . $item->jumlah . ' bungkus)',
                 'jumlah' => $item->total,
                 'sumber' => 'pemasukan',
                 'id' => $item->id,
@@ -69,7 +68,7 @@ class DashboardController extends Controller
             'transaksiTerbaru',
             'chartLabels',
             'chartPemasukan',
-            'chartPengeluaran'
+            'chartPengeluaran',
         ));
     }
 }
