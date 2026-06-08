@@ -45,12 +45,21 @@
                 <h1 class="text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-linear-to-r from-indigo-600 to-purple-600">TinyBooks</h1>
             </div>
             <div class="flex items-center gap-4">
-                <button class="p-2 text-slate-400 hover:text-indigo-600 transition-colors duration-200 rounded-full hover:bg-slate-100">
-                    <i class="fa-regular fa-bell text-xl"></i>
-                </button>
-                <div class="h-9 w-9 rounded-full bg-linear-to-r from-cyan-400 to-blue-500 flex items-center justify-center text-white font-semibold shadow-sm cursor-pointer hover:ring-2 ring-offset-2 ring-blue-400 transition-all transform hover:scale-105">
-                    U
-                </div>
+                @auth
+                    <div class="text-right hidden sm:block">
+                        <p class="text-sm font-semibold text-slate-700">{{ Auth::user()->name }}</p>
+                        <p class="text-xs text-slate-500">Admin</p>
+                    </div>
+                    <div class="h-9 w-9 rounded-full bg-linear-to-r from-cyan-400 to-blue-500 flex items-center justify-center text-white font-semibold shadow-sm mr-2">
+                        {{ substr(Auth::user()->name, 0, 1) }}
+                    </div>
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" class="p-2 text-red-500 hover:text-red-700 transition-colors duration-200 rounded-full hover:bg-red-50" title="Logout">
+                            <i class="fa-solid fa-right-from-bracket text-xl"></i>
+                        </button>
+                    </form>
+                @endauth
             </div>
         </div>
     </div>
